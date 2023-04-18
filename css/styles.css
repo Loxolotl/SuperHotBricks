@@ -7,13 +7,13 @@ body{
 #main{
     width: 75%;
     height: 100vh;
-    background-image: url(../spr/tile400%.png);
+    background-color: rgb(8, 8, 8);
     margin-left: 12.5%;
     margin-right: 12.5%;
     margin-top: 15vh;
-    -webkit-box-shadow: 0px 6px 5px 5px rgba(38,32,24,0.6);
--moz-box-shadow: 0px 6px 5px 5px rgba(38,32,24,0.6);
-box-shadow: 0px 6px 5px 5px rgba(38,32,24,0.6);
+    -webkit-box-shadow: 0px 6px 5px 5px rgba(0, 0, 0, 0.6);
+-moz-box-shadow: 0px 6px 5px 5px rgba(0, 0, 0, 0.6);
+box-shadow: 0px 6px 5px 5px rgba(0, 0, 0, 0.6);
 text-align: center;
 }
 #container{
@@ -23,11 +23,15 @@ text-align: center;
     margin-right: auto;
     width: min-content;
     padding: 0px;
-    background-image: url(../spr/bgtile2.png);
+    background-color: white;
     -webkit-box-shadow: inset 0px 0px 5px 8px rgba(0,0,0,0.69);
 -moz-box-shadow: inset 0px 0px 5px 8px rgba(0,0,0,0.69);
 box-shadow: inset 0px 0px 5px 8px rgba(0,0,0,0.69);
 }
-#canvas{
-    
+#stamina{
+background-color: red;
+width: 300px;
+height: 20px;
+display: inline-block ;
+
 }

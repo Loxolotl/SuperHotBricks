@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Droplett</title>
+        <title>Super Bricks</title>
         <script src="js/scripts.js"></script>
         <link rel="stylesheet" href="css/styles.css">
         <link rel="icon" type="image/x-icon" href="img/favicon.png">
@@ -13,7 +13,9 @@
     <div id="main">
         <div id="container">
         <canvas width="700" height="508" id="canvas"></canvas>
+        <span id="stamina"></span>
     </div>
+    
     </div>
     <script type="application/javascript">
         function drawIt() {
@@ -24,7 +26,7 @@ var dx = 2;
 var dy = 2;
 var WIDTH;
 var HEIGHT;
-var r=32;
+var r=10;
 var ctx;
 var paddle= new Image();
 paddle.src= "spr/paddle.png";
@@ -48,7 +50,9 @@ function rect(x,y,w,h) {
   ctx.beginPath();
   ctx.rect(x,y,w,h);
   ctx.closePath();
+  ctx.fillStyle = "black";
   ctx.fill();
+  ctx.fillStyle = "red";
 }
 
 function clear() {
@@ -65,67 +69,66 @@ function init_paddle() {
   paddlew = 96*2;
   paddlex = (WIDTH / 2) - (paddlew/2);
   paddleh = 16;
-  
+  paddleSpeed = 1;
 }
 
 var rightDown = false;
 var leftDown = false;
+var shiftDown = false;
+var stamina = 3000;
 
 //nastavljanje leve in desne tipke
 function onKeyDown(evt) {
-  if (evt.keyCode == 39)
-rightDown = true;
+  if (evt.keyCode == 39) rightDown = true;
   else if (evt.keyCode == 37) leftDown = true;
+  else if (evt.keyCode == 16)   shiftDown = true;
 }
 
+
 function onKeyUp(evt) {
-  if (evt.keyCode == 39)
-rightDown = false;
+  if (evt.keyCode == 39) rightDown = false;
   else if (evt.keyCode == 37) leftDown = false;
+  else if (evt.keyCode == 16)   shiftDown = false;
 }
+
 $(document).keydown(onKeyDown);
 $(document).keyup(onKeyUp); 
 
 function draw() {
   clear();
-  var ball= new Image();
-ball.src = "spr/sphere.png"
-ctx.drawImage(ball,x,y);
+  circle(x,y,r);
+  document.getElementById("stamina").style.width = ""+stamina/10+"px"; 
+  
   //premik ploščice levo in desno
+
   if(rightDown){
 if((paddlex+paddlew) < WIDTH){
-paddlex += 5;
+  if(shiftDown){paddleSpeed = 5; stamina -=1} 
+  else paddleSpeed = 1;
+paddlex += paddleSpeed;
 }else{
 paddlex = WIDTH-paddlew;
 }
 }
 else if(leftDown){
 if(paddlex>0){
-paddlex -=5;
+  if(shiftDown){paddleSpeed = 5; stamina -=1} 
+  else paddleSpeed = 1;
+paddlex -= paddleSpeed;
 }else{
-paddlex=0;
+paddlex=paddleSpeed;
 }
 }
 rect(paddlex, HEIGHT-paddleh, paddlew, paddleh);
-ctx.drawImage(paddle,paddlex,HEIGHT-paddleh);
+
 //riši opeke
 
-  for (i=0; i < NROWS; i++) {
+for (i=0; i < NROWS; i++) {
     for (j=0; j < NCOLS; j++) {
-      if (bricks[i][j] == 3) {
-        var brick = new Image();
-brick.src = "spr/BrickX4.png";
-        ctx.drawImage(brick, (j * (BRICKWIDTH + PADDING)) + PADDING, (i * (BRICKHEIGHT + PADDING)) + PADDING, BRICKWIDTH, BRICKHEIGHT);
-      }
-      else if (bricks[i][j] == 2) {
-        var brick2 = new Image();
-brick2.src = "spr/BrickX4S2.png";
-        ctx.drawImage(brick2, (j * (BRICKWIDTH + PADDING)) + PADDING, (i * (BRICKHEIGHT + PADDING)) + PADDING, BRICKWIDTH, BRICKHEIGHT);
-      }
-      else if (bricks[i][j] == 1) {
-        var brick3 = new Image();
-brick3.src = "spr/BrickX4S3.png";
-        ctx.drawImage(brick3, (j * (BRICKWIDTH + PADDING)) + PADDING, (i * (BRICKHEIGHT + PADDING)) + PADDING, BRICKWIDTH, BRICKHEIGHT);
+      if (bricks[i][j] == 1) {
+        rect((j * (BRICKWIDTH + PADDING)) + PADDING,
+            (i * (BRICKHEIGHT + PADDING)) + PADDING,
+            BRICKWIDTH, BRICKHEIGHT);
       }
     }
   }
@@ -140,6 +143,7 @@ brick3.src = "spr/BrickX4S3.png";
 if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 1) {
 dy = -dy; bricks[row][col]--;
 }
+  
   if (x + dx > WIDTH -r || x + dx < 0)
     dx = -dx;
   if (y + dy < 0)
@@ -152,8 +156,11 @@ dy = -dy; bricks[row][col]--;
     else if (y + dy > HEIGHT-r)
       clearInterval(intervalId);
   }
-  x += dx;
+  if(rightDown == true || leftDown == true){
+    x += dx;
   y += dy;
+  }
+  
 }
 
 
@@ -178,7 +185,7 @@ function initbricks() { //inicializacija opek - polnjenje v tabelo
   for (i=0; i < NROWS; i++) {
     bricks[i] = new Array(NCOLS);
     for (j=0; j < NCOLS; j++) {
-      bricks[i][j] = 3;
+      bricks[i][j] = 1;
     }
   }
 }
@@ -188,5 +195,6 @@ initbricks();
 
         
         </script>
+
 </body>
 </html>
