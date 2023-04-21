@@ -4,15 +4,17 @@
         <title>Super Bricks</title>
         <script src="js/scripts.js"></script>
         <link rel="stylesheet" href="css/styles.css">
-        <link rel="icon" type="image/x-icon" href="img/favicon.png">
+        <link rel="icon" type="image/x-icon" href="img/bricks.png">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="lib/jquery-3.6.4.min.js"></script>
 </head>
 <body onload="drawIt()">
-    
+    <h1 id="super" class="title">SUPER</h1>
+    <h1 id="hot" class="title">HOT</h1>
+    <h1 id="bricks" class="title">BRICKS</h1>
     <div id="main">
         <div id="container">
-        <canvas width="700" height="508" id="canvas"></canvas>
+        <canvas width="1000" height="508" id="canvas"></canvas>
         <span id="stamina"></span>
     </div>
     
@@ -22,8 +24,8 @@
             init();
 var x = 250;
 var y = 250;
-var dx = 2;
-var dy = 2;
+var dx = 1.5;
+var dy = 1.5;
 var WIDTH;
 var HEIGHT;
 var r=10;
@@ -103,20 +105,28 @@ function draw() {
 
   if(rightDown){
 if((paddlex+paddlew) < WIDTH){
-  if(shiftDown){paddleSpeed = 5; stamina -=1} 
-  else paddleSpeed = 1;
+  if(shiftDown && stamina>0){paddleSpeed = 5; stamina -=50;} 
+  else{paddleSpeed = 1; if(stamina<3000){
+  stamina += 5;
+} }  
 paddlex += paddleSpeed;
+
 }else{
 paddlex = WIDTH-paddlew;
+
 }
 }
 else if(leftDown){
 if(paddlex>0){
-  if(shiftDown){paddleSpeed = 5; stamina -=1} 
-  else paddleSpeed = 1;
+  if(shiftDown && stamina>0){paddleSpeed = 5; stamina -=50;} 
+  else{paddleSpeed = 1; if(stamina<3000){
+  stamina += 5;
+} } 
 paddlex -= paddleSpeed;
+
 }else{
 paddlex=paddleSpeed;
+
 }
 }
 rect(paddlex, HEIGHT-paddleh, paddlew, paddleh);
@@ -142,6 +152,12 @@ for (i=0; i < NROWS; i++) {
   //Če smo zadeli opeko, vrni povratno kroglo in označi v tabeli, da opeke ni več
 if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 1) {
 dy = -dy; bricks[row][col]--;
+
+
+if(stamina<3000){
+  stamina += 100;
+}
+
 }
   
   if (x + dx > WIDTH -r || x + dx < 0)
@@ -177,8 +193,8 @@ var PADDING;
 
 function initbricks() { //inicializacija opek - polnjenje v tabelo
   NROWS = 6;
-  NCOLS = 5;
-  BRICKWIDTH = WIDTH/NCOLS-2;
+  NCOLS = 8;
+  BRICKWIDTH = WIDTH/NCOLS-2.3;
   BRICKHEIGHT = 32;
   PADDING = 2;
   bricks = new Array(NROWS);

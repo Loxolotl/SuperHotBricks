@@ -1,8 +1,9 @@
 body{
-    /*background-image: url(../img/bg.png);*/
+    background-image: url(../img/bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     height: 120vh;
+    text-align: center;
 }
 #main{
     width: 75%;
@@ -10,7 +11,7 @@ body{
     background-color: rgb(8, 8, 8);
     margin-left: 12.5%;
     margin-right: 12.5%;
-    margin-top: 15vh;
+    margin-top: 2vh;
     -webkit-box-shadow: 0px 6px 5px 5px rgba(0, 0, 0, 0.6);
 -moz-box-shadow: 0px 6px 5px 5px rgba(0, 0, 0, 0.6);
 box-shadow: 0px 6px 5px 5px rgba(0, 0, 0, 0.6);
@@ -29,9 +30,29 @@ text-align: center;
 box-shadow: inset 0px 0px 5px 8px rgba(0,0,0,0.69);
 }
 #stamina{
-background-color: red;
+background-image: url(../img/red_crystal.jpg);
+background-position: center;
 width: 300px;
 height: 20px;
 display: inline-block ;
 
+}
+.title{
+    font-family: sans-serif;
+    font-size: 48px;
+    font-weight: 100;
+    line-height: 28px;
+    color: #FFFFFF;
+
+text-shadow: 0 0 10px #98dfff;
+}
+#hot{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bolder;
+    display: inline;
+    font-size: 44px;
+    letter-spacing: 3px;
+}
+#super{
+    display: inline;
 }
