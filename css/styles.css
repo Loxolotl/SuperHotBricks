@@ -57,8 +57,9 @@ text-shadow: 0 0 10px #98dfff;
     display: inline;
 }
 #tocke{
-    color: #FFFFFF;
+    background-color: transparent;
 }
 p{
-    color: #FFFFFF; 
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+   
 }

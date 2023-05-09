@@ -1,0 +1,212 @@
+body {
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+button, input[type="submit"], input[type="reset"] {
+        
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        height: 32px;
+        width: 428px;
+        background: hsl(40, 100%, 95%);
+        border-radius: 8px;
+        
+    }
+button:hover {
+        background-color: hsl(40, 100%, 95%);
+}
+button:active {
+    background-color: wheat;
+}
+
+
+div.main {
+    width: 600px;
+    margin: auto;
+    background-color: white;
+    height: 920px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 4px 4px 3px 1px rgb(216, 203, 187);
+    border: 1px wheat solid;
+}
+div.header{
+    border-radius: 15px 15px 0px;
+    background-color: hsl(40, 100%, 95%);
+}
+
+
+img.logo {
+    margin-top: 12px;
+    width: 428px;
+}
+
+input:hover {
+    background-color: rgb(255, 252, 247);
+}
+
+select:hover {
+    background-color: rgb(255, 252, 247);
+}
+
+select:focus {
+    outline: none;
+}
+
+.stan {
+    border-width: 0px 0px 2px 0px;
+    border-color: wheat;
+    height: 26px;
+
+}
+
+input.phon {
+    border-width: 0px 0px 2px 0px;
+    border-color: #f5deb3;
+    height: 30px;
+
+}
+
+select.country {
+    border-width: 0px 0px 2px 0px;
+    border-color: wheat;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+}
+
+table {
+    margin: 0 auto;
+    /* or margin: 0 auto 0 auto */
+}
+
+#firstname {
+    width: 180px;
+}
+
+#lastname {
+    width: 180px;
+}
+
+#email {
+    width: 424px;
+}
+
+#address {
+    width: 424px;
+}
+
+#country {
+    width: 240px;
+}
+
+#city {
+    width: 160px;
+}
+
+#state {
+    width: 128px;
+}
+
+#post {
+    width: 100px;
+    
+}
+
+#number {
+    width: 180px;
+}
+
+.phon {
+    width: 182px;
+}
+
+#signin {
+    width: 180px;
+}
+
+#signout {
+    width: 180px;
+}
+#roomselect {
+    color: wheat;
+}
+
+.container{
+    margin-top: 8px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid wheat;
+    border-radius: 50%;
+    margin-left: 12px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.container .checkmark{
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    border-radius: 50%;
+    background-color: wheat;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.container input:checked + .checkmark{
+    opacity: 1;
+}
+
+.container input{
+    display: none;
+}
+
+.labl{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    
+    display: inline-block;
+    
+}
+hr{
+    height: 2px;
+        background-color: wheat;
+        border: none;
+}
+#cont, #cont2, input, select, textarea, button{
+    -webkit-box-shadow:inset 0 0 4px wheat;
+       -moz-box-shadow:inset 0 0 4px wheat;
+            box-shadow:inset 0 0 4px wheat;
+
+    
+    
+}
+
+#people{
+    width: 180px;
+}
+
+#post[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  #post::-webkit-outer-spin-button,
+  #post::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+

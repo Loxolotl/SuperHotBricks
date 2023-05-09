@@ -16,8 +16,9 @@
         <div id="container">
         <canvas width="1000" height="508" id="canvas"></canvas>
         <span id="stamina"></span>
+        <p>Score: <mark id="tocke">0</mark></p>
     </div>
-    <p>Točke: <mark id="tocke">0</mark></p>
+    
     </div>
     <script type="application/javascript">
         function drawIt() {
@@ -32,12 +33,15 @@ var r=10;
 var ctx;
 var paddle= new Image();
 paddle.src= "spr/paddle.png";
-$("#tocke").html(tocke);
+var tocke;
+
 
 function init() {
   ctx = $('#canvas')[0].getContext("2d");
   WIDTH = $("#canvas").width();
   HEIGHT = $("#canvas").height();
+  tocke = 0;
+  $("#tocke").html(tocke);
   return setInterval(draw, 10);
 }
 
@@ -108,7 +112,7 @@ function draw() {
 if((paddlex+paddlew) < WIDTH){
   if(shiftDown && stamina>0){paddleSpeed = 5; stamina -=50;} 
   else{paddleSpeed = 1; if(stamina<3000){
-  stamina += 5;
+  stamina += 15;
 } }  
 paddlex += paddleSpeed;
 
@@ -121,7 +125,7 @@ else if(leftDown){
 if(paddlex>0){
   if(shiftDown && stamina>0){paddleSpeed = 5; stamina -=50;} 
   else{paddleSpeed = 1; if(stamina<3000){
-  stamina += 5;
+  stamina += 15;
 } } 
 paddlex -= paddleSpeed;
 
@@ -152,7 +156,10 @@ for (i=0; i < NROWS; i++) {
   
   //Če smo zadeli opeko, vrni povratno kroglo in označi v tabeli, da opeke ni več
 if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 1) {
-dy = -dy; bricks[row][col]--; score++; $("#tocke").html(tocke);
+dy = -dy; bricks[row][col] = 0;
+tocke += 1;
+
+$("#tocke").html(tocke);
 
 
 if(stamina<3000){
