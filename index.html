@@ -78,6 +78,7 @@ var rightDown = false;
 var leftDown = false;
 var shiftDown = false;
 var stamina = 3000;
+var score = 0;
 
 //nastavljanje leve in desne tipke
 function onKeyDown(evt) {
@@ -151,7 +152,7 @@ for (i=0; i < NROWS; i++) {
   
   //Če smo zadeli opeko, vrni povratno kroglo in označi v tabeli, da opeke ni več
 if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 1) {
-dy = -dy; bricks[row][col]--;
+dy = -dy; bricks[row][col]--; score++; print(score)
 
 
 if(stamina<3000){
